@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+body{background-color: #eee}
+*{box-sizing: border-box;}
+.b{border: 2px solid #ccc; background-color: #fff;}
+.p{padding: 1em;}
+.fl{float: left;}
+.w50{width: 50%;}
+.w33{width: 33%;}
+</style>
+</head>
+<body>
+<div class="fl w33 b p">
+	<p id="content"></p>
+</div>
+<template id="tpl">
+	<div class="fl w33 p">
+		<p>内容: <input class="textInputEl" value="" /></p>
+		<p>字号: <input class="sizeInputEl" value="" /></p>
+		<p>颜色: <input class="colorInputEl" value="" /></p>
+		<p><button>保存</button></p>
+	</div>
+</template>
+<script>
+var Editor=function(targetEL){
+	this.targetEL=targetEL;
+	var elFrag = tpl.content.cloneNode(true);
+	document.body.appendChild(elFrag);
+	elFrag=document.body.lastElementChild;
+	this.textSetter(elFrag.querySelector('.textInputEl'));
+	this.sizeSetter(elFrag.querySelector('.sizeInputEl'));
+	this.colorSetter(elFrag.querySelector('.colorInputEl'));
+	this.initSubmit(elFrag.querySelector('button'));
+}
+Editor.prototype={
+	template: tpl.innerHTML,
+	textSetter:function (inputEl) {
+		var self=this;
+		inputEl.addEventListener('input', function () {
+			self.targetEL.innerHTML = this.value;
+		})
+	},
+	sizeSetter:function (inputEl) {
+		var self=this;
+		inputEl.addEventListener('input', function () {
+			self.targetEL.style.fontSize = this.value+'px';
+		})
+	},
+	colorSetter:function (inputEl) {
+		var self=this;
+		inputEl.addEventListener('input', function () {
+			self.targetEL.style.color = this.value;
+		})
+	},
+	initSubmit:function (submit) {
+		var self=this;
+		submit.addEventListener('click', function () {
+			var data={
+				text: self.targetEL.innerHTML,
+				size: self.targetEL.style.fontSize,
+				color: self.targetEL.style.color
+			}
+			alert(JSON.stringify(data));
+		})
+	}
+}
+var editor=new Editor(content);
+var editor=new Editor(content);
+</script>
+</body>
+</html>
+
+
