@@ -8,7 +8,7 @@
 
 * [下载地址](https://github.com/jiuzilong/reactstudy-first/archive/master.zip)
 
-##步骤：
+## 步骤：
 1. 安装nodejs插件
 ```
  npm install;
@@ -22,7 +22,7 @@
 3. 浏览src目录下的`testC3_react.html`
 
 
-##核心JS代码：
+## 核心JS代码：
 
 ```javascript
     'use strict'
